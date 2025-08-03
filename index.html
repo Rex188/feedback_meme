@@ -1,39 +1,53 @@
-<!-- modify this form HTML and place wherever you want your form -->
-
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Blurred Background CSS</title>
-  <link rel="stylesheet" href="./style.css">
-
+  <!-- 引入外部样式文件 -->
+  <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
-<!-- partial:index.partial.html -->
-<div id="box1" class="box blurred-bg tinted">
-  <div class="content">
-    <form
-  action="https://formspree.io/f/xzzvajaj"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
+  <!-- 背景盒子（带模糊和色调） -->
+  <div id="box1" class="box blurred-bg tinted">
+    <div class="content">
+
+      <!-- enctype="multipart/form-data" 仅在需要文件上传时保留；否则可删 -->
+      <form
+        action="https://formspree.io/f/xzzvajaj"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <!-- 邮箱输入 -->
+        <label>
+          Your email:
+          <input type="email" name="email" required />
+        </label>
+
+        <!-- 反馈内容 -->
+        <label>
+          Your message:
+          <textarea name="message" rows="6" required></textarea>
+        </label>
 
 
+        <!-- （可选）隐藏蜜罐字段：机器人若填写将被过滤 -->
+        <input type="text" name="_honeypot" style="display:none" />
+
+        <!-- （可选）提交后自动跳转到感谢页 -->
+        <!-- <input type="hidden" name="_redirect" value="thanks.html" /> -->
+
+        <!-- 提交按钮 -->
+        <button type="submit">Send</button>
+      </form>
+      <!-- 表单结束 -->
+
+    </div>
   </div>
-</div>
-<!-- partial -->
-  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script><script  src="./script.js"></script>
 
+  <!-- 外部脚本：jQuery 与自定义脚本 -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
