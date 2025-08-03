@@ -1,82 +1,165 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:100,400,700);
+/* -------------------------------------------------
+ * 字体导入：Raleway（100 / 400 / 700 三种字重）
+ * ------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css?family=Raleway:100,400,700");
+
+/* -------------------------------------------------
+ * 页面背景与全局字体
+ * ------------------------------------------------- */
 body {
+  /* 主背景：固定纯景图，铺满整个视口 */
   background-image: url("https://lh4.googleusercontent.com/-3eBjuQpOGFw/U47yh_-OycI/AAAAAAAAI2U/uaU5pK49N1w/s1600/normal.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  font-family: Raleway, Open Sans, Droid Sans, Roboto,arial, sans-serif;
+
+  /* 全局字体栈：首选 Raleway，后备系统无衬线体 */
+  font-family: Raleway, "Open Sans", "Droid Sans", Roboto, Arial, sans-serif;
 }
 
+/* -------------------------------------------------
+ * 通用模糊背景（带固定附件）
+ * ------------------------------------------------- */
 .blurred-bg {
+  /* 背景图：模糊版 */
   background-image: url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
   background-repeat: no-repeat;
+  /* 多浏览器尺寸写法（老式 -moz/-o/-webkit 兼容） */
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover;
   background-attachment: fixed;
 }
+
+/* -------------------------------------------------
+ * 模糊背景 + 亮色半透明遮罩
+ * ------------------------------------------------- */
 .blurred-bg.tinted {
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4yIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g'), url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
+  /* 双重背景：SVG 线性渐变 (亮) + 模糊背景图 */
+  background-image:
+    url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv...'),
+    url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
+
+  /* 让渐变充满容器 */
   background-size: 100%;
-  background-image: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
-  background-image: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
-  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
-}
-.blurred-bg.shaded {
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC4yIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g'), url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
-  background-size: 100%;
-  background-image: -moz-linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
-  background-image: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
+
+  /* 兼容旧浏览器的渐变写法 */
+  background-image:
+    -moz-linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+    url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
+  background-image:
+    -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+    url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
+  background-image:
+    linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+    url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
 }
 
+/* -------------------------------------------------
+ * 模糊背景 + 深色半透明遮罩
+ * ------------------------------------------------- */
+.blurred-bg.shaded {
+  background-image:
+    url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv...'),
+    url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
+  background-size: 100%;
+
+  /* 深色渐变（黑色 20% 透明度） */
+  background-image:
+    -moz-linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
+  background-image:
+    -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
+  background-image:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://lh3.googleusercontent.com/-m8TxQMObg6c/U474EWu7Y9I/AAAAAAAAI2k/xkRGoIEC1iU/s1600/blur.jpg");
+}
+
+/* -------------------------------------------------
+ * 卡片容器样式
+ * ------------------------------------------------- */
 .box {
   width: 500px;
   height: 300px;
-  left: -webkit-calc( 50% - 250px );
+
+  /* 水平居中：calc(50% - 半宽) 兼容前缀写法 */
+  left: -webkit-calc(50% - 250px);
   top: 20%;
   position: absolute;
+
+  /* 圆角 & 阴影 */
   border-radius: 5px;
   -moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
   -webkit-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+
+  /* 半透明边框 */
   border: 1px solid rgba(255, 255, 255, 0.3);
+
   padding: 20px;
   text-align: center;
+
+  /* 盒模型：包含 padding / border */
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+
+  /* 文本阴影提升可读性 */
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+
+  /* Flex 布局让内部内容居中 */
   display: flex;
-  transition: box-shadow .3s ease;
+
+  /* 激活时阴影过渡效果 */
+  transition: box-shadow 0.3s ease;
 }
+
+/* 拖拽时阴影更深 */
 .box:active {
   cursor: move;
   -moz-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
   -webkit-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
 }
+
+/* 让内容在 Flex 容器中垂直水平居中 */
 .box .content {
   margin: auto;
 }
 
-h1, h2, a, p {
-  color: white;
+/* -------------------------------------------------
+ * 文本颜色与权重
+ * ------------------------------------------------- */
+h1,
+h2,
+a,
+p {
+  color: #ffffff;
   font-weight: 100;
 }
-.tinted h1, .tinted h2, .tinted a, .tinted p {
-  color: black;
+
+/* 在 tinted 盒子下，文本改为深色以增强对比 */
+.tinted h1,
+.tinted h2,
+.tinted a,
+.tinted p {
+  color: #000000;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
+/* 副标题大小 */
 h2 {
   font-size: 14px;
 }
 
+/* 段落基础样式 */
 p {
   margin: 20px;
 }
+
+/* “Related” 链接段落样式 */
 p.related {
   text-transform: uppercase;
   font-weight: 700;
@@ -90,14 +173,20 @@ p.related a:hover {
   text-decoration: underline;
 }
 
+/* -------------------------------------------------
+ * 右下角固定广告/信息卡片
+ * ------------------------------------------------- */
 .iklan {
   position: fixed;
   bottom: 0;
   right: 0;
-  background: white;
+
+  background: #ffffff;
   width: 200px;
   padding: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 .iklan p {
   margin: 0 0 15px;
@@ -106,8 +195,9 @@ p.related a:hover {
 }
 .iklan a {
   background-color: #ff4757;
-  color: white;
+  color: #ffffff;
   display: inline-block;
+
   padding: 10px 20px;
   border-radius: 3px;
   text-decoration: none;
